@@ -19,7 +19,7 @@ import { colors } from "@/utils/theme/colors";
 
 import profile2 from "public/images/profile/profile2.png";
 
-const products = [
+const missions = [
     {
         id: "1",
         dateOfPoste: "23/02/2024",
@@ -65,6 +65,26 @@ const products = [
         }
     },
 ];
+
+// caclate time with day or houre or minute based on posted date fomate 23/02/2024
+const calcTime = (date: string) => {
+    const today = new Date();
+    const postedDate = parseDateString(date);
+    const diffTime = Math.abs(today.getTime() - postedDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays > 1) {
+        return `${diffDays} days`;
+    } else if (diffDays === 1) {
+        return "1 day";
+    } else {
+        return "Today";
+    }
+};
+
+const parseDateString = (dateString: string) => {
+    const [day, month, year] = dateString.split('/');
+    return new Date(`${year}-${month}-${day}`);
+};
 
 type StatusProps = {
     status: string;
@@ -113,16 +133,16 @@ const MyMissions = () => {
                     }}
                 >
                     <TableBody>
-                        {products.map((product) => (
-                            <TableRow key={product.dateOfPoste}>
+                        {missions.map((mission) => (
+                            <TableRow key={mission.dateOfPoste}>
                                 <TableCell>
                                     <Box display="flex" alignItems="center" pr={8}>
                                         <Box>
                                             <Typography variant="h6" fontSize={16} fontWeight={700}>
-                                                {product.post}
+                                                {mission.post}
                                             </Typography>
                                             <Typography color="textSecondary" fontSize="12px">
-                                                {product.dateOfPoste}
+                                                {calcTime(mission.dateOfPoste) + " ago"}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -132,7 +152,7 @@ const MyMissions = () => {
                                         <Box display="flex" alignItems="center">
                                             <Box mr={2}>
                                                 <Image
-                                                    src={product.recruter.avatar}
+                                                    src={mission.recruter.avatar}
                                                     alt="profile"
                                                     width={40}
                                                     height={40}
@@ -140,10 +160,10 @@ const MyMissions = () => {
                                             </Box>
                                             <Box>
                                                 <Typography variant="h6" fontWeight={600}>
-                                                    {product.recruter.name}
+                                                    {mission.recruter.name}
                                                 </Typography>
                                                 <Typography color="textSecondary" fontSize="13px">
-                                                    {product.recruter.title}
+                                                    {mission.recruter.title}
                                                 </Typography>
                                             </Box>
                                         </Box>
@@ -151,7 +171,7 @@ const MyMissions = () => {
                                 </TableCell>
                                 <TableCell>
                                     <Box ml={1}>
-                                        <Status status={product.status} />
+                                        <Status status={mission.status} />
                                     </Box>
                                 </TableCell>
                                 <TableCell align="right">
