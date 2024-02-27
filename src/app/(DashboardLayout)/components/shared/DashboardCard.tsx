@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardHeader, CardContent,styled } from "@mui/material";
+import {DashboardCardHeader} from "./ui/CustomCardHeader"
 
 type Props = {
   title?: string;
@@ -13,22 +14,6 @@ type Props = {
   middlecontent?: string | JSX.Element;
 };
 
-const CardHeaderStyled = styled(CardHeader)(({ theme }) => ({
-  backgroundColor: "#fff",
-  borderBottom: `1px solid ${theme.palette.grey[200]}`,
-  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.02)",
-  "& .MuiCardHeader-title": {
-    fontSize: "16px",
-    fontWeight: "700",
-    color: theme.palette.secondary.dark,
-  },
-  "& .MuiCardHeader-action": {
-    marginTop: "0px",
-    fontSize: "14px",
-    color: theme.palette.primary.main,
-    fontWeight: "500",
-  },
-}));
 
 const DashboardCard = ({
   title,
@@ -43,7 +28,7 @@ const DashboardCard = ({
 }: Props) => {
   return (
     <Card sx={{ padding: 0 }} elevation={9} variant={undefined}>
-      <CardHeaderStyled
+      <DashboardCardHeader
         title={title}
         action={action}
         sx={{ 

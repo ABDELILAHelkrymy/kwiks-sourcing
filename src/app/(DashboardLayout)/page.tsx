@@ -1,4 +1,3 @@
-'use client'
 import { Grid, Box, Typography } from '@mui/material';
 import PageContainer from '@/app/(DashboardLayout)/components/container/PageContainer';
 // components
@@ -9,6 +8,7 @@ import MyInbox from './components/dashboard/MyInbox';
 import UpcomingMeetings from './components/dashboard/UpcomingMeetings';
 import MySchedule from './components/dashboard/MySchedule';
 import MyMissions from './components/dashboard/MyMissions';
+import { colors } from '@/utils/theme/colors';
 
 
 const Dashboard = () => {
@@ -20,7 +20,7 @@ const Dashboard = () => {
         <Box mt={1} mb={3}>
           <Typography variant="h2" style={{
             fontWeight: 700,
-            color : theme.palette.secondary.dark
+            color : colors.gray[800]
           }}>
             What do you have today?
           </Typography>

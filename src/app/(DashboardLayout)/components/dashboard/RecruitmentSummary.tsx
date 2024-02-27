@@ -1,19 +1,11 @@
+"use client"
 import { Box, Grid, Typography, styled } from "@mui/material"
 import BlankCard from "../shared/BlankCard"
 import MissionIcon from 'public/images/icons-svg/mission.svg';
 import MissionsEncourIcon from 'public/images/icons-svg/missions-encours.svg';
 import RerutementValideIcon from 'public/images/icons-svg/recrutement-valide.svg';
 import { colors } from "@/utils/theme/colors";
-
-const BoxStyled = styled(Box)(({ theme }) => ({
-    width: "52px",
-    height: "52px",
-    borderRadius: "50%",
-    position: 'relative',
-}));
-
-
-type Props = {}
+import CircleBg from "../shared/ui/CircleBg";
 
 const states = [
     {
@@ -42,7 +34,7 @@ const states = [
     }
 ]
 
-const RecruitmentSummary = (props: Props) => {
+const RecruitmentSummary = () => {
   return (
     <Box mt={-8}>
         <Grid container spacing={2}>
@@ -50,11 +42,11 @@ const RecruitmentSummary = (props: Props) => {
                 <Grid item xs={12} lg={3} md={3} key={index}>
                     <BlankCard>
                         <Box display="flex" alignItems="center" justifyContent="flex-start" p={3}>
-                            <BoxStyled sx={{backgroundColor:state.bgColor}} mr={2}>
+                            <CircleBg bgColor={state.bgColor}>
                                 <Box position="absolute" top='50%' left='50%' sx={{transform: 'translate(-50%, -50%)'}}>
                                     {state.icon}
                                 </Box>
-                            </BoxStyled>
+                            </CircleBg>
                             <Box>
                                 <Typography variant="h6" textTransform='uppercase' fontSize={12} fontWeight={700}>
                                     {state.title}

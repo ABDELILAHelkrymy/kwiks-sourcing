@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, AppBar, Toolbar, styled, Stack, IconButton, Badge, Button, Container, Menu, MenuItem } from '@mui/material';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
@@ -14,8 +13,7 @@ import Settings from 'public/images/icons-svg/settings.svg';
 // components
 import Profile from './Profile';
 import { IconMenu2 } from '@tabler/icons-react';
-import theme from '@/utils/theme';
-
+import { colors } from '@/utils/theme/colors';
 
 const pages = [
   {
@@ -42,58 +40,13 @@ const pages = [
 
 const Header = () => {
 
-  const AppBarStyled = styled(AppBar)(({ theme }) => ({
-    boxShadow: 'none',
-    background: theme.palette.white.main,
-    [theme.breakpoints.up('lg')]: {
-      minHeight: '40px',
-    },
-  }));
-  const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
-    width: '100%',
-    color: theme.palette.text.secondary,
-    display: 'flex',
-    justifyContent: 'space-between',
-  }));
-
-  const ButtonStyled = styled(Button)(({ theme }) => ({
-    borderRadius: '50px',
-    color: theme.palette.secondary.dark,
-    fontSize: '14px',
-    textTransform: 'none',
-    fontWeight: 500,
-    padding: '8px 16px 8px 8px',
-    transition: 'all 0.5s ease',
-    margin: '0px 8px',
-    '&:hover': {
-      backgroundColor: theme.palette.primary.contrastText,
-      color: theme.palette.primary.main,
-      "& > *:first-of-type": {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-      },
-    },
-    "& > *:first-of-type": {
-      color: theme.palette.secondary.main,
-      backgroundColor: theme.palette.secondary.light,
-      borderRadius: '50%',
-      width: '32px',
-      height: '32px',
-      dislay: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginLeft: '0px',
-      marginRight: '16px',
-    },
-  }));
-
   const menuId = 'primary-search-account-menu';
 
   return (
-    <AppBarStyled position="sticky" color="secondary" className='container'>
+    <AppBar position="sticky" color="secondary" className='container'>
       <Container maxWidth='xl'>
         <Box display="flex" flexDirection='row' alignItems='center' justifyContent='space-between'>
-          <ToolbarStyled
+          <Toolbar
             style={{
               paddingLeft: '0px',
               paddingRight: '0px',
@@ -114,12 +67,12 @@ const Header = () => {
             </IconButton>
 
             <Box>
-              <Logo color={theme.palette.primary.main} />
+              <Logo color={colors.brand[500]} />
             </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
               {pages.map((page) => (
-                <ButtonStyled key={page.title} startIcon={page.icon} color='secondary'>{page.title}</ButtonStyled>
+                <Button key={page.title} startIcon={page.icon} variant='outlined' color='primary'>{page.title}</Button>
               ))}
             </Box>
             <Stack spacing={1} direction="row" alignItems="center">
@@ -152,10 +105,10 @@ const Header = () => {
               <Profile />
             </Stack>
 
-          </ToolbarStyled>
+          </Toolbar>
         </Box>
       </Container>
-    </AppBarStyled>
+    </AppBar>
   );
 };
 

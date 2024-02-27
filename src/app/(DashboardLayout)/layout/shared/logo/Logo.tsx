@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { styled } from "@mui/material";
 import LogoIcon from 'public/images/logos/logo.svg';

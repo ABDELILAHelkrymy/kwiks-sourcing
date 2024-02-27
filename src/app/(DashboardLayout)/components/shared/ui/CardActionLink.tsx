@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 import styled from '@mui/material/styles/styled';
 
@@ -24,7 +25,7 @@ type LinkStyledProps = {
     href: string;
 };
 
-const LinkStyled = ({ children, href }: LinkStyledProps) => {
+const CardActionLink = ({ children, href }: LinkStyledProps) => {
     return (
         <StyledLink href={href}>
             {children}
@@ -33,4 +34,4 @@ const LinkStyled = ({ children, href }: LinkStyledProps) => {
 }
 
 
-export default LinkStyled
+export default CardActionLink

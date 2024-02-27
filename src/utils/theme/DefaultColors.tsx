@@ -139,7 +139,7 @@ const baselightTheme = createTheme({
   },
   components: {
 
-  
+
     MuiCssBaseline: {
       styleOverrides: {
         ".MuiPaper-elevation9, .MuiPopover-root .MuiPaper-elevation": {
@@ -164,6 +164,69 @@ const baselightTheme = createTheme({
           boxShadow: "none",
         },
       },
+      variants: [
+        {
+          props: { variant: "outlined", color: "primary" },
+          style: {
+            border: 'none',
+            borderRadius: '50px',
+            color: theme.palette.secondary.dark,
+            fontSize: '14px',
+            textTransform: 'none',
+            fontWeight: 500,
+            padding: '8px 16px 8px 8px',
+            transition: 'all 0.5s ease',
+            margin: '0px 8px',
+            '&:hover': {
+              border: 'none',
+              backgroundColor: theme.palette.primary.contrastText,
+              color: theme.palette.primary.main,
+              "& > *:first-of-type": {
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText,
+              },
+            },
+            "& > *:first-of-type": {
+              color: theme.palette.secondary.main,
+              backgroundColor: theme.palette.secondary.light,
+              borderRadius: '50%',
+              width: '32px',
+              height: '32px',
+              dislay: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginLeft: '0px',
+              marginRight: '16px',
+            },
+          },
+        },
+        {
+          props: { variant: "outlined", color: "secondary" },
+          style: {
+            color: colors.gray[700],
+            fontWeight: 700,
+            textTransform: 'capitalize',
+            padding: '8px 16px',
+            borderRadius: '8px',
+            border: `2px solid ${colors.gray[300]}`,
+            boxShadow: 'none',
+            '&:hover': {
+              border: `2px solid ${colors.gray[300]}`,
+            }
+          }
+        },
+        {
+          props: { variant: "contained", color: 'primary' },
+          style: {
+            color: colors.white.white,
+            fontWeight: 700,
+            textTransform: 'capitalize',
+            padding: '8px 16px',
+            borderRadius: '8px',
+            boxShadow: 'none',
+          }
+        }
+      ],
     },
     MuiFab: {
       styleOverrides: {
@@ -214,9 +277,30 @@ const baselightTheme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          background: '#fff',
+          [theme.breakpoints.up('lg')]: {
+            minHeight: '40px',
+          },
+        },
+      },
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          width: '100%',
+          color: theme.palette.text.secondary,
+          display: 'flex',
+          justifyContent: 'space-between',
+        },
+      },
+    }
 
   },
-  
+
 });
 
 export { baselightTheme };

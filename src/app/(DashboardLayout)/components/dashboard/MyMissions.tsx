@@ -14,15 +14,16 @@ import {
 import Image from "next/image";
 import DashboardCard from "../shared/DashboardCard";
 import ArrowForword from "public/images/icons-svg/arrow_forward.svg"
-import LinkStyled from "../shared/LinkStyled";
-import { colors } from "@/utils/theme/colors";
+import CardActionLink from "../shared/ui/CardActionLink";
+import Status from "../shared/ui/Status";
+import { calcDurationOrTimeAgo } from "@/utils/helpers/tools";
 
 import profile2 from "public/images/profile/profile2.png";
 
 const missions = [
     {
         id: "1",
-        dateOfPoste: "23/02/2024",
+        dateOfPoste: "11:00 23/02/2024",
         post: "Web Designer",
         status: "Waiting brief aproval",
         recruter: {
@@ -33,7 +34,7 @@ const missions = [
     },
     {
         id: "2",
-        dateOfPoste: "23/02/2024",
+        dateOfPoste: "18:00 23/02/2024",
         post: "Project Manager",
         status: "Waiting contract",
         recruter: {
@@ -44,7 +45,7 @@ const missions = [
     },
     {
         id: "3",
-        dateOfPoste: "23/02/2024",
+        dateOfPoste: "15:00 23/02/2024",
         post: "Project Manager",
         status: "Finised",
         recruter: {
@@ -55,7 +56,7 @@ const missions = [
     },
     {
         id: "4",
-        dateOfPoste: "23/02/2024",
+        dateOfPoste: "12:00 23/02/2024",
         post: "Frontend Engineer",
         status: "Finised",
         recruter: {
@@ -66,58 +67,10 @@ const missions = [
     },
 ];
 
-// caclate time with day or houre or minute based on posted date fomate 23/02/2024
-const calcTime = (date: string) => {
-    const today = new Date();
-    const postedDate = parseDateString(date);
-    const diffTime = Math.abs(today.getTime() - postedDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays > 1) {
-        return `${diffDays} days`;
-    } else if (diffDays === 1) {
-        return "1 day";
-    } else {
-        return "Today";
-    }
-};
-
-const parseDateString = (dateString: string) => {
-    const [day, month, year] = dateString.split('/');
-    return new Date(`${year}-${month}-${day}`);
-};
-
-type StatusProps = {
-    status: string;
-};
-
-const Status = ({ status }: StatusProps) => {
-    const { color, bgColor } = calcStatusColor(status);
-    return (
-        <Stack direction="row" alignItems='center' spacing={1} width='fit-content' sx={{ bgcolor: bgColor, p: "2px 12px", borderRadius: "50px" }}>
-            <Box sx={{ bgcolor: color, width: "5px", height: "5px", borderRadius: "50%" }}></Box>
-            <Typography variant="caption" color={color} fontSize='10px'>{status}</Typography>
-        </Stack>
-    );
-}
-
-const calcStatusColor = (status: string) => {
-    switch (status) {
-        case "Brief validation":
-            return { color: colors.error[500], bgColor: colors.error[100] };
-        case "Finised":
-            return { color: colors.green[500], bgColor: colors.green[100] };
-        case "Waiting brief aproval":
-            return { color: colors.warning[500], bgColor: colors.warning[100] };
-        case "Waiting contract":
-            return { color: colors.warning[500], bgColor: colors.warning[100] };
-        default:
-            return { color: colors.error[500], bgColor: colors.error[100] };
-    }
-}
 
 const MyMissions = () => {
     return (
-        <DashboardCard title="My missions" action={<LinkStyled href="#">Go to my missions</LinkStyled>}>
+        <DashboardCard title="My missions" action={<CardActionLink href="#">Go to my missions</CardActionLink>}>
             <TableContainer
                 sx={{
                     width: {
@@ -142,7 +95,7 @@ const MyMissions = () => {
                                                 {mission.post}
                                             </Typography>
                                             <Typography color="textSecondary" fontSize="12px">
-                                                {calcTime(mission.dateOfPoste) + " ago"}
+                                                {calcDurationOrTimeAgo(mission.dateOfPoste) + " ago"}
                                             </Typography>
                                         </Box>
                                     </Box>

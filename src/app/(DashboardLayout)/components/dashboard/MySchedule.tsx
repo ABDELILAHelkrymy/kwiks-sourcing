@@ -1,8 +1,9 @@
 import DashboardCard from "../shared/DashboardCard";
 import { Box, Typography, Stack, styled, Paper } from "@mui/material";
 import { colors } from "@/utils/theme/colors";
-import LinkStyled from "../shared/LinkStyled";
+import CardActionLink from "../shared/ui/CardActionLink";
 import ArrowForword from "public/images/icons-svg/arrow_forward.svg"
+import { getDay } from "@/utils/helpers/tools";
 
 const cheduleMeetings = [
     {
@@ -24,47 +25,13 @@ const cheduleMeetings = [
 ];
 
 
-const getDay = (dateString: string) => {
-    const today = new Date();
-    const meetingDate = parseDateString(dateString);
-
-    
-    const clearTime = (date: Date) => {
-        date.setHours(0, 0, 0, 0);
-        return date;
-    };
-
-    const clearToday = clearTime(new Date(today));
-    const clearMeetingDate = clearTime(meetingDate);
-
-    if (clearToday.getTime() === clearMeetingDate.getTime()) {
-        return "Today";
-    }
-
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const clearTomorrow = clearTime(tomorrow);
-
-    if (clearTomorrow.getTime() === clearMeetingDate.getTime()) {
-        return "Tomorrow";
-    }
-
-    return dateString;
-};
-
-const parseDateString = (dateString: string) => {
-    const [day, month, year] = dateString.split('/');
-    return new Date(`${year}-${month}-${day}`);
-};
-
 const getMeetingsByDay = (day: string) => {
     return cheduleMeetings.filter((meeting) => getDay(meeting.date) === day);
 };
 
-
 const MySchedule = () => {
     return (
-        <DashboardCard title="My schedule" action={<LinkStyled href='#'>Go to calendar</LinkStyled>}>
+        <DashboardCard title="My schedule" action={<CardActionLink href='#'>Go to calendar</CardActionLink>}>
             <Stack direction="column" p={2} bgcolor={colors.white.white}>
 
                 <Typography variant="caption" color="secondary" style={{ fontWeight: 700 }}>

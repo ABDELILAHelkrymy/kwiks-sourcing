@@ -1,30 +1,13 @@
-"use client";
+
 import { styled, Container, Box } from "@mui/material";
 import React, { useState } from "react";
 import Header from "./layout/header/Header";
 import Footer from "./layout/footer/page";
 import Banner from "./layout/banner/page";
 
-const MainWrapper = styled("div")(() => ({
-  display: "flex",
-  minHeight: "100vh",
-  width: "100%",
-}));
-
-const PageWrapper = styled("div")(() => ({
-  display: "flex",
-  flexGrow: 1,
-  paddingBottom: "60px",
-  flexDirection: "column",
-  zIndex: 1,
-  backgroundColor: "transparent",
-}));
-
 interface Props {
   children: React.ReactNode;
 }
-
-
 
 export default function RootLayout({
   children,
@@ -32,12 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <MainWrapper className="mainwrapper">
+    <div className="main-wrapper">
       
       {/* ------------------------------------------- */}
       {/* Main Wrapper */}
       {/* ------------------------------------------- */}
-      <PageWrapper className="page-wrapper">
+      <div className="page-wrapper">
         {/* ------------------------------------------- */}
         {/* Header */}
         {/* ------------------------------------------- */}
@@ -65,7 +48,7 @@ export default function RootLayout({
           {/* ------------------------------------------- */}
           <Footer />
         </Container>
-      </PageWrapper>
-    </MainWrapper>
+      </div>
+    </div>
   );
 }
